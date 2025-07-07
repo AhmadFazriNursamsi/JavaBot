@@ -5,10 +5,15 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import io.github.cdimascio.dotenv.Dotenv;
+
 
 @Service
 public class GeminiService {
-    private static final String API_KEY = "AIzaSyBvOZyyCF4P4E6ymvj6WiyBarWt_IlTs4M"; // Ganti dengan API kamu
+    private static final Dotenv dotenv = Dotenv.load();
+    private static final String API_KEY = dotenv.get("GEMINI_API_KEY");
+    
+
     private static final String URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + API_KEY;
 
     private final OkHttpClient client = new OkHttpClient();
